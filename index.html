@@ -11,6 +11,7 @@
     <!-- <script src="./index.js"></script> -->
   </head>
   <body>
+
     <script>
     //Create a Pixi Application
     let app = new PIXI.Application({
@@ -23,22 +24,27 @@
     );
     //Add the canvas that Pixi automatically created for you to the HTML document
     document.body.appendChild(app.view);
-    //If you want to make the canvas fill the entire window, you can apply this
-    //CSS styling:
-    /*
-    app.renderer.view.style.position = "absolute"
-    app.renderer.view.style.width = window.innerWidth + "px";
-    app.renderer.view.style.height = window.innerHeight + "px";
-    app.renderer.view.style.display = "block";
-    */
-    //The `renderer.view` is just an ordinary `<canvas>` element.
-    //Here's how you can reference to add an optional dashed
-    //border around the canvas
-    app.renderer.view.style.border = "1px dashed black";
-    //To resize the canvas
-    app.renderer.resize(512, 512);
-    //To change the background color
-    app.renderer.backgroundColor = 0x061639;
+    //load an image and run the `setup` function when it's done
+    PIXI.loader
+      .add("imgs/MeatQuestion.jpg")
+      .load(setup);
+    //This `setup` function will run when the image has loaded
+    function setup() {
+      //Create the cat sprite
+      let cat = new PIXI.Sprite(PIXI.loader.resources["imgs/MeatQuestion.jpg"].texture);
+
+      //You can also create the `cat` sprite from the texture, like this:
+      //let cat = new PIXI.Sprite(PIXI.TextureCache["images/cat.png"]);
+      //Add the cat to the stage
+      app.stage.addChild(cat);
+      //If you ever need to, here's how you can clean out WebGL's GPU
+      //memory manually
+      /*
+      Object.keys(TextureCache).forEach(function(texture) {
+        TextureCache[texture].destroy(true);
+      });
+      */
+    }
     </script>
 
     <!-- <script type="text/javascript">
