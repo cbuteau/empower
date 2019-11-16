@@ -2,13 +2,54 @@
   <head>
     <title>Empower Tester</title>
     <!-- <script src="https://cdn.babylonjs.com/babylon.js"></script> -->
-    <script src="https://cdn.babylonjs.com/babylon.max.js"></script>
-    <script src="https://cdn.babylonjs.com/babylon.worker.js"></script>
+    <!-- <script src="https://cdn.babylonjs.com/babylon.max.js"></script>
+    <script src="https://cdn.babylonjs.com/babylon.worker.js"></script> -->
 
-    <script src="./index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.5/pixi.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.5/pixi.min.js"></script> -->
+
+    <!-- <script src="./index.js"></script> -->
   </head>
   <body>
-    <canvas id="renderCanvas" touch-action="none"></canvas>
+    <script>
+    //Create a Pixi Application
+    let app = new PIXI.Application({
+        width: 256,
+        height: 256,
+        antialiasing: true,
+        transparent: false,
+        resolution: 1
+      }
+    );
+    //Add the canvas that Pixi automatically created for you to the HTML document
+    document.body.appendChild(app.view);
+    //If you want to make the canvas fill the entire window, you can apply this
+    //CSS styling:
+    /*
+    app.renderer.view.style.position = "absolute"
+    app.renderer.view.style.width = window.innerWidth + "px";
+    app.renderer.view.style.height = window.innerHeight + "px";
+    app.renderer.view.style.display = "block";
+    */
+    //The `renderer.view` is just an ordinary `<canvas>` element.
+    //Here's how you can reference to add an optional dashed
+    //border around the canvas
+    app.renderer.view.style.border = "1px dashed black";
+    //To resize the canvas
+    app.renderer.resize(512, 512);
+    //To change the background color
+    app.renderer.backgroundColor = 0x061639;
+    </script>
+
+    <!-- <script type="text/javascript">
+  	  let type = "WebGL"
+  	  if(!PIXI.utils.isWebGLSupported()){
+  	    type = "canvas"
+  	  }
+  	  PIXI.utils.sayHello(type)
+    </script> -->
+
+    <!-- <canvas id="renderCanvas" touch-action="none"></canvas>
     <script>
       var canvas = document.getElementById("renderCanvas"); // Get the canvas element
 
@@ -47,6 +88,6 @@
       window.addEventListener("resize", function () { // Watch for browser/canvas resize events
               engine.resize();
       });
-    </script>
+    </script> -->
   </body>
 </html>

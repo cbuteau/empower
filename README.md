@@ -35,3 +35,11 @@ Going to try and let go of requirejs and maybe do something new like systemjs
 + Load some scene
 + Load and move through scene
 + Load level detail of some sort.
+
+## Status
+
+ Have not touched...we should start from scratch.
+ Lets check out PixiJS
+
+ https://github.com/kittykatattack/learningPixi
+ 
