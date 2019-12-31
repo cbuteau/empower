@@ -1,99 +1,77 @@
-<html>
+<!-- <html>
   <head>
     <title>Empower Tester</title>
     <!-- <script src="https://cdn.babylonjs.com/babylon.js"></script> -->
     <!-- <script src="https://cdn.babylonjs.com/babylon.max.js"></script>
     <script src="https://cdn.babylonjs.com/babylon.worker.js"></script> -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.5/pixi.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.5/pixi.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.5/pixi.min.js"></script> -->
 
     <!-- <script src="./index.js"></script> -->
+
+    <!-- Babylon Stable... -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <script src="https://cdn.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+    <script src="https://cdn.babylonjs.com/postProcessesLibrary/babylonjs.postProcess.min.js"></script>
+    <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+    <script src="https://cdn.babylonjs.com/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js"></script>
+    <script src="https://cdn.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
+
   </head>
   <body>
 
-    <script>
-    //Create a Pixi Application
-    let app = new PIXI.Application({
-        width: 256,
-        height: 256,
-        antialiasing: true,
-        transparent: false,
-        resolution: 1
-      }
-    );
-    //Add the canvas that Pixi automatically created for you to the HTML document
-    document.body.appendChild(app.view);
-    //load an image and run the `setup` function when it's done
-    PIXI.loader
-      .add("imgs/MeatQuestion.jpg")
-      .load(setup);
-    //This `setup` function will run when the image has loaded
-    function setup() {
-      //Create the cat sprite
-      let cat = new PIXI.Sprite(PIXI.loader.resources["imgs/MeatQuestion.jpg"].texture);
+    <canvas id="renderCanvas" touch-action="none"></canvas> //touch-action="none" for best results from PEP
 
-      //You can also create the `cat` sprite from the texture, like this:
-      //let cat = new PIXI.Sprite(PIXI.TextureCache["images/cat.png"]);
-      //Add the cat to the stage
-      app.stage.addChild(cat);
-      //If you ever need to, here's how you can clean out WebGL's GPU
-      //memory manually
-      /*
-      Object.keys(TextureCache).forEach(function(texture) {
-        TextureCache[texture].destroy(true);
-      });
-      */
-    }
+    <script>
+        var canvas = document.getElementById("renderCanvas"); // Get the canvas element
+        var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
+
+        var gamepadManager = new BABYLON.GamepadManager();
+
+        gamepadManager.onGamepadConnectedObservable.add((gamepad, state)=>{
+          console.log('gamepad connected');
+        });
+        gamepadManager.onGamepadDisconnectedObservable.add((gamepad, state)=>{
+          console.log('gamepad disconnected');
+        });
+
+        /******* Add the create scene function ******/
+        var createScene = function () {
+
+
+
+            // Create the scene space
+            var scene = new BABYLON.Scene(engine);
+
+            // Add a camera to the scene and attach it to the canvas
+            var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0,0,5), scene);
+            camera.attachControl(canvas, true);
+
+            // Add lights to the scene
+            var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
+            var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
+
+            // Add and manipulate meshes in the scene
+            var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter:2}, scene);
+
+            return scene;
+        };
+        /******* End of the create scene function ******/
+
+        var scene = createScene(); //Call the createScene function
+
+        // Register a render loop to repeatedly render the scene
+        engine.runRenderLoop(function () {
+                scene.render();
+        });
+
+        // Watch for browser/canvas resize events
+        window.addEventListener("resize", function () {
+                engine.resize();
+        });
     </script>
-
-    <!-- <script type="text/javascript">
-  	  let type = "WebGL"
-  	  if(!PIXI.utils.isWebGLSupported()){
-  	    type = "canvas"
-  	  }
-  	  PIXI.utils.sayHello(type)
-    </script> -->
-
-    <!-- <canvas id="renderCanvas" touch-action="none"></canvas>
-    <script>
-      var canvas = document.getElementById("renderCanvas"); // Get the canvas element
-
-      var engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
-
-      /******* Add the create scene function ******/
-      var createScene = function () {
-
-                  // Create the scene space
-                  var scene = new BABYLON.Scene(engine);
-
-                  // Add a camera to the scene and attach it to the canvas
-                  var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, BABYLON.Vector3.Zero(), scene);
-                  camera.attachControl(canvas, true);
-
-                  // Add lights to the scene
-                  var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
-                  var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
-
-
-                  // Add and manipulate meshes in the scene
-                  var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter:2}, scene);
-
-                  return scene;
-          };
-
-          /******* End of the create scene function ******/
-
-          var scene = createScene(); //Call the createScene function
-
-      engine.runRenderLoop(function () { // Register a render loop to repeatedly render the scene
-              scene.render();
-      });
-
-
-      window.addEventListener("resize", function () { // Watch for browser/canvas resize events
-              engine.resize();
-      });
-    </script> -->
   </body>
 </html>

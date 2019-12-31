@@ -42,4 +42,14 @@ Going to try and let go of requirejs and maybe do something new like systemjs
  Lets check out PixiJS
 
  https://github.com/kittykatattack/learningPixi
- 
+
+### 12/31/2019
+
+PIXI is not 3D at all we should switch back to babylon
+
+Started loading Babylon from CDN.
+Need to figure out controller integration next.
+
+https://doc.babylonjs.com/how_to/how_to_use_gamepads
+
+Did not figure it out yet...
