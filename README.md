@@ -99,3 +99,7 @@ Big 3D translucent letters you can walk through.
 ### 2/2/2020
 
 Get editor running locally.
+
+### 8/23/2020
+
+Installed bablyon es6 packages...start from scratch...

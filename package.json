@@ -11,6 +11,14 @@
   "license": "MIT",
   "repository": "https://github.com/cbuteau/empower.git",
   "dependencies": {
+    "@babylonjs/core": "4.1.0",
+    "@babylonjs/gui": "4.1.0",
+    "@babylonjs/inspector": "4.1.0",
+    "@babylonjs/loaders": "4.1.0",
+    "@babylonjs/materials": "4.1.0",
+    "@babylonjs/post-processes": "4.1.0",
+    "@babylonjs/procedural-textures": "4.1.0",
+    "@babylonjs/serializers": "4.1.0",
     "babylonjs": "3.2.0-alpha0",
     "express": "4.16.2"
   }
