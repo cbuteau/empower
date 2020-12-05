@@ -4,11 +4,12 @@
   "description": "A web based coop game.",
   "main": "index.js",
   "scripts": {
+    "start": "./node_modules/.bin/electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "edit": "start \"BabylonJS Editor\" \"C:\\Users\\Christopher\\AppData\\Local\\Programs\\BabylonJS Editor\\BabylonJS Editor.exe\""
   },
   "author": "Christopher W Buteau <cbuteau@gmail.com>",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "repository": "https://github.com/cbuteau/empower.git",
   "dependencies": {
     "@babylonjs/core": "4.1.0",
@@ -21,5 +22,8 @@
     "@babylonjs/serializers": "4.1.0",
     "babylonjs": "3.2.0-alpha0",
     "express": "4.16.2"
+  },
+  "devDependencies": {
+    "electron": "11.0.3"
   }
 }
