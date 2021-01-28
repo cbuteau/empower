@@ -24,6 +24,6 @@
     "express": "4.16.2"
   },
   "devDependencies": {
-    "electron": "11.0.3"
+    "electron": "11.1.0"
   }
 }
